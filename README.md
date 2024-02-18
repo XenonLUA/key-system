@@ -80,6 +80,13 @@ To set up Discord authentication, add the callback URL in your Discord applicati
 https://example.com/api/auth/callback/discord
 ```
 
+## Preview:
+![image](https://github.com/WavaDev/key-system/assets/127393002/5eaf8325-33e0-43eb-a96d-551cdc768dce)
+![image](https://github.com/WavaDev/key-system/assets/127393002/767c5c22-4080-4d3b-93ec-89318e1f539f)
+![image](https://github.com/WavaDev/key-system/assets/127393002/2082747d-9f70-4d64-ac03-194f7f79d9a6)
+![image](https://github.com/WavaDev/key-system/assets/127393002/e0885a42-b876-4652-89be-d4895c66cbae)
+![image](https://github.com/WavaDev/key-system/assets/127393002/dc77888b-5bb2-4baf-aa02-92d864b6f9fa)
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please fork the repository, make your changes, and submit a pull request.
