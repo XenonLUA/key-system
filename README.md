@@ -1,3 +1,8 @@
+# Alert: the db.js file doesn't run on start, if you get the error: Operation verifyids.insertOne() buffering timed out after 10000ms
+
+Just restart the server, And access /api/verifyid and api/keyid. When you access the urls it will fix the error.
+
+You can fix it to run on start tho. I forgot to do that.
 # Open Source Key System
 
 ## Description
