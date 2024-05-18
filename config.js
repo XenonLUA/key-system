@@ -1,4 +1,4 @@
-const main_url = 'https://Key.XenonHUB.io'; // The Main URl/Root Url example: https://example.com
+const main_url = 'https://key-system-mauve.vercel.app/'; // The Main URl/Root Url example: https://example.com
 const linkvertise_ID = '1092296'; // Your linkvertise ID, you need it for to get paid from linkvertise.
 const adminWhitelist = ['439705027083501579']; // Your Discord ID, and other admins who has perms to accses the Admin Panel.
 const DISCORD_CLIENT_ID = '1086599423305461790'; // Your Discord Client ID for Discord Admin Login.
