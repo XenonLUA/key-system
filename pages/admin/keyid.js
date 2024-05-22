@@ -24,7 +24,7 @@ export default function Home() {
 
   const fetchVerifyIds = async () => {
     try {
-      const response = await fetch('/api/adminkeyid', {
+      const response = await fetch('/api/admin/keyid', {
         headers: {
           Authorization: process.env.auth,
         },
