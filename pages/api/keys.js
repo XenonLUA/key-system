@@ -13,7 +13,7 @@ const VerifyId = mongoose.models.VerifyId || mongoose.model('VerifyId', verifyId
 
 async function isVerifyIdInStage3(verifyid) {
   try {
-    const response = await fetch(`https://api.zyno.xyz/api/verifyidcheck?verifyid=${verifyid}`);
+    const response = await fetch(`https://key-system-mauve.vercel.app/api/verifyidcheck?verifyid=${verifyid}`);
     if (response.ok) {
       const responseData = await response.json();
       const { stage } = responseData.data;
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
           const newKeyId = generateRandomKeyId();
           const keyRecord = new Key({ keyid: newKeyId, ip: userIP });
           await keyRecord.save();
-  
+
           res.status(201).json({ status: 'success', message: '201 | Key generated', data: { keyId: newKeyId, expires: keyRecord.createdAt } });
         } catch (error) {
           console.error('Error occurred during key generation:', error);
