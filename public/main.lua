@@ -12,39 +12,51 @@ local xenon = {
 	Themes = {
 		XenonDark = {
 			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 25, 25)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 30, 30)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(40, 40, 40)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 30, 30))
 			}),
-			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
-			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
-			["Color Theme"] = Color3.fromRGB(50, 60, 150),
-			["Color Text"] = Color3.fromRGB(243, 243, 243),
-			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+			["Color Hub 2"] = Color3.fromRGB(35, 35, 35),
+			["Color Stroke"] = Color3.fromRGB(50, 50, 50),
+			["Color Theme"] = Color3.fromRGB(70, 90, 160),
+			["Color Text"] = Color3.fromRGB(255, 255, 255),
+			["Color Dark Text"] = Color3.fromRGB(200, 200, 200)
 		},
 		Dark = {
 			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 40, 40)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(47.5, 47.5, 47.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 40, 40))
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(55, 55, 55)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
 			}),
-			["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
-			["Color Stroke"] = Color3.fromRGB(65, 65, 65),
-			["Color Theme"] = Color3.fromRGB(65, 150, 255),
-			["Color Text"] = Color3.fromRGB(245, 245, 245),
-			["Color Dark Text"] = Color3.fromRGB(190, 190, 190)
+			["Color Hub 2"] = Color3.fromRGB(55, 55, 55),
+			["Color Stroke"] = Color3.fromRGB(75, 75, 75),
+			["Color Theme"] = Color3.fromRGB(85, 170, 255),
+			["Color Text"] = Color3.fromRGB(250, 250, 250),
+			["Color Dark Text"] = Color3.fromRGB(210, 210, 210)
 		},
 		Purple = {
 			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(27.5, 25, 30)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(27.5, 25, 30))
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(35, 30, 45)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(45, 45, 55)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(35, 30, 45))
 			}),
-			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
-			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
-			["Color Theme"] = Color3.fromRGB(150, 0, 255),
-			["Color Text"] = Color3.fromRGB(240, 240, 240),
-			["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+			["Color Hub 2"] = Color3.fromRGB(40, 35, 50),
+			["Color Stroke"] = Color3.fromRGB(60, 50, 70),
+			["Color Theme"] = Color3.fromRGB(170, 70, 255),
+			["Color Text"] = Color3.fromRGB(255, 255, 255),
+			["Color Dark Text"] = Color3.fromRGB(210, 210, 210)
+		},
+		BlueLight = {  -- Tema baru
+			["Color Hub 1"] = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(220, 230, 250)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(200, 215, 245)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(220, 230, 250))
+			}),
+			["Color Hub 2"] = Color3.fromRGB(210, 220, 240),
+			["Color Stroke"] = Color3.fromRGB(180, 190, 210),
+			["Color Theme"] = Color3.fromRGB(100, 150, 255),
+			["Color Text"] = Color3.fromRGB(20, 20, 20),
+			["Color Dark Text"] = Color3.fromRGB(60, 60, 80)
 		}
 	},
 	Info = {
@@ -64,6 +76,7 @@ local xenon = {
 	Tabs = {},
 	Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/XenonLUA/key-system/refs/heads/main/public/icon.lua"))()
 }
+
 
 local ViewportSize = workspace.CurrentCamera.ViewportSize
 local UIScale = ViewportSize.Y / 450
@@ -544,31 +557,41 @@ function xenon:GetIcon(index)
 end
 
 function xenon:SetTheme(NewTheme)
-	if not VerifyTheme(NewTheme) then return end
-	
-	xenon.Save.Theme = NewTheme
-	SaveJson("XenonHUB V1.json", xenon.Save)
-	Theme = xenon.Themes[NewTheme]
-	
-	Comnection:FireConnection("ThemeChanged", NewTheme)
-	table.foreach(xenon.Instances, function(_,Val)
-		if Val.Type == "Gradient" then
-			Val.Instance.Color = Theme["Color Hub 1"]
-		elseif Val.Type == "Frame" then
-			Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
-		elseif Val.Type == "Stroke" then
-			Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
-		elseif Val.Type == "Theme" then
-			Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
-		elseif Val.Type == "Text" then
-			Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
-		elseif Val.Type == "DarkText" then
-			Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
-		elseif Val.Type == "ScrollBar" then
-			Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
-		end
-	end)
+    -- Pastikan tema baru valid
+    if not VerifyTheme(NewTheme) then return end
+
+    -- Simpan tema baru
+    xenon.Save.Theme = NewTheme
+    SaveJson("XenonHUB V1.json", xenon.Save)
+
+    -- Tetapkan tema baru
+    Theme = xenon.Themes[NewTheme]
+
+    -- Pastikan koneksi ke 'ThemeChanged' valid sebelum dipanggil
+    if Comnection then
+        Comnection:FireConnection("ThemeChanged", NewTheme)
+    end
+
+    -- Ubah properti masing-masing instance berdasarkan tipe dan tema
+    table.foreach(xenon.Instances, function(_, Val)
+        if Val.Type == "Gradient" then
+            Val.Instance.Color = Theme["Color Hub 1"]
+        elseif Val.Type == "Frame" then
+            Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
+        elseif Val.Type == "Stroke" then
+            Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
+        elseif Val.Type == "Theme" then
+            Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+        elseif Val.Type == "Text" then
+            Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
+        elseif Val.Type == "DarkText" then
+            Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
+        elseif Val.Type == "ScrollBar" then
+            Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+        end
+    end)
 end
+
 
 function xenon:SetScale(NewScale)
 	NewScale = ViewportSize.Y / math.clamp(NewScale, 300, 2000)
