@@ -614,56 +614,40 @@ function xenon:SetTheme(NewTheme)
     SaveJson("XenonHUB V1.json", xenon.Save)
 
     -- Tetapkan tema baru
-    Theme = xenon.Themes[NewTheme]
+    local Theme = xenon.Themes[NewTheme]
 
     -- Pastikan koneksi ke 'ThemeChanged' valid sebelum dipanggil
     if Comnection then
         Comnection:FireConnection("ThemeChanged", NewTheme)
     end
 
-    -- Deteksi perangkat mobile
+    -- Deteksi perangkat mobile untuk penyesuaian jika perlu
     local isMobile = game:GetService("UserInputService").TouchEnabled
 
-    -- Ubah properti masing-masing instance berdasarkan tipe dan tema
-    table.foreach(xenon.Instances, function(_, Val)
-        -- Periksa apakah perangkat adalah mobile
-        if isMobile then
-            pcall(function()
-                if Val.Type == "Gradient" then
+    -- Ubah properti masing-masing instance berdasarkan tipe dan tema dengan pemeriksaan tambahan
+    for _, Val in pairs(xenon.Instances) do
+        -- Gunakan pcall agar tidak terjadi error yang menyebabkan crash
+        pcall(function()
+            if Val.Instance and Theme then  -- Pastikan instance dan tema valid
+                -- Terapkan tema pada instance yang berbeda berdasarkan tipe
+                if Val.Type == "Gradient" and Theme["Color Hub 1"] and Val.Instance:IsA("UIGradient") then
                     Val.Instance.Color = Theme["Color Hub 1"]
-                elseif Val.Type == "Frame" then
+                elseif Val.Type == "Frame" and Theme["Color Hub 2"] and Val.Instance:IsA("Frame") then
                     Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
-                elseif Val.Type == "Stroke" then
-                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
-                elseif Val.Type == "Theme" then
+                elseif Val.Type == "Stroke" and Theme["Color Stroke"] and Val.Instance:IsA("UIStroke") then
+                    Val.Instance.Color = Theme["Color Stroke"]
+                elseif Val.Type == "Theme" and Theme["Color Theme"] and (Val.Instance:IsA("Frame") or Val.Instance:IsA("TextLabel") or Val.Instance:IsA("TextButton")) then
                     Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
-                elseif Val.Type == "Text" then
+                elseif Val.Type == "Text" and Theme["Color Text"] and (Val.Instance:IsA("TextLabel") or Val.Instance:IsA("TextButton")) then
                     Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
-                elseif Val.Type == "DarkText" then
+                elseif Val.Type == "DarkText" and Theme["Color Dark Text"] and (Val.Instance:IsA("TextLabel") or Val.Instance:IsA("TextButton")) then
                     Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
-                elseif Val.Type == "ScrollBar" then
-                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+                elseif Val.Type == "ScrollBar" and Theme["Color Theme"] and Val.Instance:IsA("ScrollingFrame") then
+                    Val.Instance.ScrollBarImageColor3 = Theme["Color Theme"]
                 end
-            end)
-        else
-            -- Jalankan secara normal jika bukan mobile
-            if Val.Type == "Gradient" then
-                Val.Instance.Color = Theme["Color Hub 1"]
-            elseif Val.Type == "Frame" then
-                Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
-            elseif Val.Type == "Stroke" then
-                Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
-            elseif Val.Type == "Theme" then
-                Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
-            elseif Val.Type == "Text" then
-                Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
-            elseif Val.Type == "DarkText" then
-                Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
-            elseif Val.Type == "ScrollBar" then
-                Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
             end
-        end
-    end)
+        end)
+    end
 end
 
 
