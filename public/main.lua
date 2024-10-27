@@ -51,7 +51,7 @@ local xenon = {
 		Version = "V.1"
 	},
 	Save = {
-		UISize = {550, 380},
+		UISize = {550, 3600},
 		TabSize = 160,
 		Theme = "Darker"
 	},
@@ -129,7 +129,7 @@ local SetProps, SetChildren, InsertTheme, Create do
 		end
 	end
 	
-	pcall(Save, "xenon library V5.json")
+	pcall(Save, "XenonHUB V1.json")
 end
 
 local Funcs = {} do
@@ -271,7 +271,7 @@ local GetFlag, SetFlag, CheckFlag do
 end
 
 local ScreenGui = Create("ScreenGui", CoreGui, {
-	Name = "xenon Library V5",
+	Name = "XenonHUB V1",
 }, {
 	Create("UIScale", {
 		Scale = UIScale,
@@ -547,7 +547,7 @@ function xenon:SetTheme(NewTheme)
 	if not VerifyTheme(NewTheme) then return end
 	
 	xenon.Save.Theme = NewTheme
-	SaveJson("xenon library V5.json", xenon.Save)
+	SaveJson("XenonHUB V1.json", xenon.Save)
 	Theme = xenon.Themes[NewTheme]
 	
 	Comnection:FireConnection("ThemeChanged", NewTheme)
@@ -576,7 +576,7 @@ function xenon:SetScale(NewScale)
 end
 
 function xenon:MakeWindow(Configs)
-	local WTitle = Configs[1] or Configs.Name or Configs.Title or "xenon Library V5"
+	local WTitle = Configs[1] or Configs.Name or Configs.Title or "XenonHUB V1"
 	local WMiniText = Configs[2] or Configs.SubTitle or "by : XenonHUB"
 	
 	Settings.ScriptFile = Configs[3] or Configs.SaveFolder or false
@@ -717,13 +717,13 @@ function xenon:MakeWindow(Configs)
 	ConnectSave(ControlSize1, function()
 		if not Minimized then
 			xenon.Save.UISize = {MainFrame.Size.X.Offset, MainFrame.Size.Y.Offset}
-			SaveJson("xenon library V5.json", xenon.Save)
+			SaveJson("XenonHUB V1.json", xenon.Save)
 		end
 	end)
 	
 	ConnectSave(ControlSize2, function()
 		xenon.Save.TabSize = MainScroll.Size.X.Offset
-		SaveJson("xenon library V5.json", xenon.Save)
+		SaveJson("XenonHUB V1.json", xenon.Save)
 	end)
 	
 	local ButtonsFolder = Create("Folder", TopBar, {
