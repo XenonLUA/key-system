@@ -46,19 +46,19 @@ local xenon = {
             ["Color Text"] = Color3.fromRGB(255, 255, 255),
             ["Color Dark Text"] = Color3.fromRGB(215, 215, 215)
         },
-        BlueLight = {
-            ["Color Hub 1"] = ColorSequence.new({
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(225, 235, 255)),
-                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(205, 220, 250)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(225, 235, 255))
-            }),
-            ["Color Hub 2"] = Color3.fromRGB(215, 225, 245),
-            ["Color Stroke"] = Color3.fromRGB(185, 195, 215),
-            ["Color Theme"] = Color3.fromRGB(100, 150, 255),
-            ["Color Text"] = Color3.fromRGB(20, 20, 20),
-            ["Color Dark Text"] = Color3.fromRGB(60, 60, 80)
-        },
-        -- New Modern Themes
+		DarkBlueLight = {
+			["Color Hub 1"] = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 50, 60)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(45, 55, 65)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 50, 60))
+			}),
+			["Color Hub 2"] = Color3.fromRGB(50, 60, 70),
+			["Color Stroke"] = Color3.fromRGB(70, 80, 90),
+			["Color Theme"] = Color3.fromRGB(160, 100, 60), -- Mengganti warna biru dengan warna oranye coklat
+			["Color Text"] = Color3.fromRGB(220, 220, 220),
+			["Color Dark Text"] = Color3.fromRGB(150, 150, 160)
+		}
+		,
         Midnight = {
             ["Color Hub 1"] = ColorSequence.new({
                 ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 25, 35)),
@@ -71,41 +71,42 @@ local xenon = {
             ["Color Text"] = Color3.fromRGB(255, 255, 255),
             ["Color Dark Text"] = Color3.fromRGB(200, 200, 220)
         },
-        Emerald = {
+        -- Tema Baru
+        Obsidian = {
             ["Color Hub 1"] = ColorSequence.new({
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 40, 35)),
-                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(35, 45, 40)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 40, 35))
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(15, 15, 20)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(25, 25, 30)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(15, 15, 20))
             }),
-            ["Color Hub 2"] = Color3.fromRGB(35, 45, 40),
-            ["Color Stroke"] = Color3.fromRGB(50, 65, 55),
-            ["Color Theme"] = Color3.fromRGB(40, 180, 120),
-            ["Color Text"] = Color3.fromRGB(255, 255, 255),
-            ["Color Dark Text"] = Color3.fromRGB(210, 220, 215)
+            ["Color Hub 2"] = Color3.fromRGB(20, 20, 25),
+            ["Color Stroke"] = Color3.fromRGB(35, 35, 40),
+            ["Color Theme"] = Color3.fromRGB(125, 85, 45),
+            ["Color Text"] = Color3.fromRGB(245, 245, 245),
+            ["Color Dark Text"] = Color3.fromRGB(160, 160, 165)
         },
-        Sunset = {
+        ForestNight = {
             ["Color Hub 1"] = ColorSequence.new({
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 35, 35)),
-                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(50, 40, 40)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 35, 35))
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 30, 20)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(30, 40, 30)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 30, 20))
             }),
-            ["Color Hub 2"] = Color3.fromRGB(50, 40, 40),
-            ["Color Stroke"] = Color3.fromRGB(70, 55, 55),
-            ["Color Theme"] = Color3.fromRGB(255, 120, 85),
-            ["Color Text"] = Color3.fromRGB(255, 255, 255),
-            ["Color Dark Text"] = Color3.fromRGB(220, 210, 210)
+            ["Color Hub 2"] = Color3.fromRGB(25, 35, 25),
+            ["Color Stroke"] = Color3.fromRGB(40, 55, 40),
+            ["Color Theme"] = Color3.fromRGB(75, 105, 55),
+            ["Color Text"] = Color3.fromRGB(235, 235, 235),
+            ["Color Dark Text"] = Color3.fromRGB(160, 175, 160)
         },
-        Arctic = {
+        AshGray = {
             ["Color Hub 1"] = ColorSequence.new({
-                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(235, 240, 245)),
-                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(225, 230, 240)),
-                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(235, 240, 245))
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(35, 35, 40)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(45, 45, 50)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(35, 35, 40))
             }),
-            ["Color Hub 2"] = Color3.fromRGB(230, 235, 240),
-            ["Color Stroke"] = Color3.fromRGB(200, 210, 220),
-            ["Color Theme"] = Color3.fromRGB(110, 160, 255),
-            ["Color Text"] = Color3.fromRGB(30, 30, 35),
-            ["Color Dark Text"] = Color3.fromRGB(70, 75, 85)
+            ["Color Hub 2"] = Color3.fromRGB(40, 40, 45),
+            ["Color Stroke"] = Color3.fromRGB(60, 60, 65),
+            ["Color Theme"] = Color3.fromRGB(125, 125, 130),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(180, 180, 190)
         }
     },
     Info = {
@@ -125,6 +126,7 @@ local xenon = {
     Tabs = {},
     Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/XenonLUA/key-system/refs/heads/main/public/icon.lua"))()
 }
+
 
 
 local ViewportSize = workspace.CurrentCamera.ViewportSize
