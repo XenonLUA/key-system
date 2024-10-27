@@ -51,7 +51,7 @@ local xenon = {
 		Version = "V.1"
 	},
 	Save = {
-		UISize = {500, 360},
+		UISize = {400, 300},
 		TabSize = 160,
 		Theme = "Darker"
 	},
