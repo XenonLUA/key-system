@@ -9,72 +9,121 @@ local Player = Players.LocalPlayer
 local PlayerMouse = Player:GetMouse()
 
 local xenon = {
-	Themes = {
-		XenonDark = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 30, 30)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(40, 40, 40)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 30, 30))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(35, 35, 35),
-			["Color Stroke"] = Color3.fromRGB(50, 50, 50),
-			["Color Theme"] = Color3.fromRGB(70, 90, 160),
-			["Color Text"] = Color3.fromRGB(255, 255, 255),
-			["Color Dark Text"] = Color3.fromRGB(200, 200, 200)
-		},
-		Dark = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(55, 55, 55)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(55, 55, 55),
-			["Color Stroke"] = Color3.fromRGB(75, 75, 75),
-			["Color Theme"] = Color3.fromRGB(85, 170, 255),
-			["Color Text"] = Color3.fromRGB(250, 250, 250),
-			["Color Dark Text"] = Color3.fromRGB(210, 210, 210)
-		},
-		Purple = {
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(35, 30, 45)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(45, 45, 55)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(35, 30, 45))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(40, 35, 50),
-			["Color Stroke"] = Color3.fromRGB(60, 50, 70),
-			["Color Theme"] = Color3.fromRGB(170, 70, 255),
-			["Color Text"] = Color3.fromRGB(255, 255, 255),
-			["Color Dark Text"] = Color3.fromRGB(210, 210, 210)
-		},
-		BlueLight = {  -- Tema baru
-			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(220, 230, 250)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(200, 215, 245)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(220, 230, 250))
-			}),
-			["Color Hub 2"] = Color3.fromRGB(210, 220, 240),
-			["Color Stroke"] = Color3.fromRGB(180, 190, 210),
-			["Color Theme"] = Color3.fromRGB(100, 150, 255),
-			["Color Text"] = Color3.fromRGB(20, 20, 20),
-			["Color Dark Text"] = Color3.fromRGB(60, 60, 80)
-		}
-	},
-	Info = {
-		Version = "V.1"
-	},
-	Save = {
-		UISize = {500, 360},
-		TabSize = 160,
-		Theme = "XenonDark"
-	},
-	Settings = {},
-	Connection = {},
-	Instances = {},
-	Elements = {},
-	Options = {},
-	Flags = {},
-	Tabs = {},
-	Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/XenonLUA/key-system/refs/heads/main/public/icon.lua"))()
+    Themes = {
+        XenonDark = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 30, 35)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(40, 40, 45)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 30, 35))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(35, 35, 40),
+            ["Color Stroke"] = Color3.fromRGB(50, 50, 55),
+            ["Color Theme"] = Color3.fromRGB(80, 100, 180),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(200, 200, 210)
+        },
+        Dark = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 45, 45)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(55, 55, 55)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 45, 45))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(55, 55, 55),
+            ["Color Stroke"] = Color3.fromRGB(75, 75, 75),
+            ["Color Theme"] = Color3.fromRGB(85, 170, 255),
+            ["Color Text"] = Color3.fromRGB(250, 250, 250),
+            ["Color Dark Text"] = Color3.fromRGB(210, 210, 210)
+        },
+        Purple = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 35, 50)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(50, 45, 60)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 35, 50))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(45, 40, 55),
+            ["Color Stroke"] = Color3.fromRGB(65, 55, 75),
+            ["Color Theme"] = Color3.fromRGB(180, 80, 255),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(215, 215, 215)
+        },
+        BlueLight = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(225, 235, 255)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(205, 220, 250)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(225, 235, 255))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(215, 225, 245),
+            ["Color Stroke"] = Color3.fromRGB(185, 195, 215),
+            ["Color Theme"] = Color3.fromRGB(100, 150, 255),
+            ["Color Text"] = Color3.fromRGB(20, 20, 20),
+            ["Color Dark Text"] = Color3.fromRGB(60, 60, 80)
+        },
+        -- New Modern Themes
+        Midnight = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 25, 35)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(30, 30, 45)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 35))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(30, 30, 40),
+            ["Color Stroke"] = Color3.fromRGB(45, 45, 60),
+            ["Color Theme"] = Color3.fromRGB(90, 120, 255),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(200, 200, 220)
+        },
+        Emerald = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 40, 35)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(35, 45, 40)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 40, 35))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(35, 45, 40),
+            ["Color Stroke"] = Color3.fromRGB(50, 65, 55),
+            ["Color Theme"] = Color3.fromRGB(40, 180, 120),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(210, 220, 215)
+        },
+        Sunset = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 35, 35)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(50, 40, 40)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 35, 35))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(50, 40, 40),
+            ["Color Stroke"] = Color3.fromRGB(70, 55, 55),
+            ["Color Theme"] = Color3.fromRGB(255, 120, 85),
+            ["Color Text"] = Color3.fromRGB(255, 255, 255),
+            ["Color Dark Text"] = Color3.fromRGB(220, 210, 210)
+        },
+        Arctic = {
+            ["Color Hub 1"] = ColorSequence.new({
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(235, 240, 245)),
+                ColorSequenceKeypoint.new(0.50, Color3.fromRGB(225, 230, 240)),
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(235, 240, 245))
+            }),
+            ["Color Hub 2"] = Color3.fromRGB(230, 235, 240),
+            ["Color Stroke"] = Color3.fromRGB(200, 210, 220),
+            ["Color Theme"] = Color3.fromRGB(110, 160, 255),
+            ["Color Text"] = Color3.fromRGB(30, 30, 35),
+            ["Color Dark Text"] = Color3.fromRGB(70, 75, 85)
+        }
+    },
+    Info = {
+        Version = "V.1.1"
+    },
+    Save = {
+        UISize = {500, 360},
+        TabSize = 160,
+        Theme = "XenonDark"
+    },
+    Settings = {},
+    Connection = {},
+    Instances = {},
+    Elements = {},
+    Options = {},
+    Flags = {},
+    Tabs = {},
+    Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/XenonLUA/key-system/refs/heads/main/public/icon.lua"))()
 }
 
 
