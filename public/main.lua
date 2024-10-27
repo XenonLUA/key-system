@@ -18,7 +18,7 @@ local xenon = {
             }),
             ["Color Hub 2"] = Color3.fromRGB(35, 35, 40),
             ["Color Stroke"] = Color3.fromRGB(50, 50, 55),
-            ["Color Theme"] = Color3.fromRGB(80, 100, 180),
+            ["Color Theme"] = Color3.fromRGB(225, 44, 44),
             ["Color Text"] = Color3.fromRGB(255, 255, 255),
             ["Color Dark Text"] = Color3.fromRGB(200, 200, 210)
         },
