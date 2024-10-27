@@ -621,25 +621,51 @@ function xenon:SetTheme(NewTheme)
         Comnection:FireConnection("ThemeChanged", NewTheme)
     end
 
+    -- Deteksi perangkat mobile
+    local isMobile = game:GetService("UserInputService").TouchEnabled
+
     -- Ubah properti masing-masing instance berdasarkan tipe dan tema
     table.foreach(xenon.Instances, function(_, Val)
-        if Val.Type == "Gradient" then
-            Val.Instance.Color = Theme["Color Hub 1"]
-        elseif Val.Type == "Frame" then
-            Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
-        elseif Val.Type == "Stroke" then
-            Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
-        elseif Val.Type == "Theme" then
-            Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
-        elseif Val.Type == "Text" then
-            Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
-        elseif Val.Type == "DarkText" then
-            Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
-        elseif Val.Type == "ScrollBar" then
-            Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+        -- Periksa apakah perangkat adalah mobile
+        if isMobile then
+            pcall(function()
+                if Val.Type == "Gradient" then
+                    Val.Instance.Color = Theme["Color Hub 1"]
+                elseif Val.Type == "Frame" then
+                    Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
+                elseif Val.Type == "Stroke" then
+                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
+                elseif Val.Type == "Theme" then
+                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+                elseif Val.Type == "Text" then
+                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
+                elseif Val.Type == "DarkText" then
+                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
+                elseif Val.Type == "ScrollBar" then
+                    Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+                end
+            end)
+        else
+            -- Jalankan secara normal jika bukan mobile
+            if Val.Type == "Gradient" then
+                Val.Instance.Color = Theme["Color Hub 1"]
+            elseif Val.Type == "Frame" then
+                Val.Instance.BackgroundColor3 = Theme["Color Hub 2"]
+            elseif Val.Type == "Stroke" then
+                Val.Instance[GetColor(Val.Instance)] = Theme["Color Stroke"]
+            elseif Val.Type == "Theme" then
+                Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+            elseif Val.Type == "Text" then
+                Val.Instance[GetColor(Val.Instance)] = Theme["Color Text"]
+            elseif Val.Type == "DarkText" then
+                Val.Instance[GetColor(Val.Instance)] = Theme["Color Dark Text"]
+            elseif Val.Type == "ScrollBar" then
+                Val.Instance[GetColor(Val.Instance)] = Theme["Color Theme"]
+            end
         end
     end)
 end
+
 
 
 function xenon:SetScale(NewScale)
