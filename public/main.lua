@@ -1852,70 +1852,110 @@ function xenon:MakeWindow(Configs)
 			local Invite = Configs[3] or Configs.Invite or ""
 			
 			local InviteHolder = Create("Frame", Container, {
-				Size = UDim2.new(1, 0, 0, 80),
+				Size = UDim2.new(1, 0, 0, 95), -- Increased height for better spacing
 				Name = "Option",
 				BackgroundTransparency = 1
 			})
 			
 			local InviteLabel = Create("TextLabel", InviteHolder, {
-				Size = UDim2.new(1, 0, 0, 15),
-				Position = UDim2.new(0, 5),
-				TextColor3 = Color3.fromRGB(40, 150, 255),
+				Size = UDim2.new(1, -10, 0, 20), -- Adjusted size
+				Position = UDim2.new(0, 5, 0, 0),
+				TextColor3 = Color3.fromRGB(60, 170, 255), -- Brighter blue
 				Font = Enum.Font.GothamBold,
 				TextXAlignment = "Left",
 				BackgroundTransparency = 1,
-				TextSize = 10,
+				TextSize = 11, -- Slightly larger
 				Text = Invite
 			})
 			
 			local FrameHolder = InsertTheme(Create("Frame", InviteHolder, {
-				Size = UDim2.new(1, 0, 0, 65),
+				Size = UDim2.new(1, 0, 0, 75), -- Increased height
 				AnchorPoint = Vector2.new(0, 1),
 				Position = UDim2.new(0, 0, 1),
 				BackgroundColor3 = Theme["Color Hub 2"]
-			}), "Frame")Make("Corner", FrameHolder)
+			}), "Frame")
+			
+			-- Add subtle shadow
+			local Shadow = Create("ImageLabel", FrameHolder, {
+				Size = UDim2.new(1, 0, 1, 0),
+				BackgroundTransparency = 1,
+				Image = "rbxassetid://7912134082",
+				ImageColor3 = Color3.fromRGB(0, 0, 0),
+				ImageTransparency = 0.8,
+				ZIndex = 0
+			})
+			
+			Make("Corner", FrameHolder, UDim.new(0, 8)) -- Rounded corners
 			
 			local ImageLabel = Create("ImageLabel", FrameHolder, {
-				Size = UDim2.new(0, 30, 0, 30),
-				Position = UDim2.new(0, 7, 0, 7),
+				Size = UDim2.new(0, 35, 0, 35), -- Larger icon
+				Position = UDim2.new(0, 10, 0, 8),
 				Image = Logo,
 				BackgroundTransparency = 1
-			})Make("Corner", ImageLabel, UDim.new(0, 4))Make("Stroke", ImageLabel)
+			})
+			Make("Corner", ImageLabel, UDim.new(0, 8))
+			Make("Stroke", ImageLabel, {
+				Color = Theme["Color Theme"],
+				Thickness = 2
+			})
 			
 			local LTitle = InsertTheme(Create("TextLabel", FrameHolder, {
-				Size = UDim2.new(1, -52, 0, 15),
-				Position = UDim2.new(0, 44, 0, 7),
+				Size = UDim2.new(1, -60, 0, 18), -- Adjusted size
+				Position = UDim2.new(0, 52, 0, 8),
 				Font = Enum.Font.GothamBold,
 				TextColor3 = Theme["Color Text"],
 				TextXAlignment = "Left",
 				BackgroundTransparency = 1,
-				TextSize = 10,
+				TextSize = 12, -- Larger text
 				Text = Title
 			}), "Text")
 			
 			local LDesc = InsertTheme(Create("TextLabel", FrameHolder, {
-				Size = UDim2.new(1, -52, 0, 0),
-				Position = UDim2.new(0, 44, 0, 22),
-				TextWrapped = "Y",
+				Size = UDim2.new(1, -60, 0, 0),
+				Position = UDim2.new(0, 52, 0, 26),
+				TextWrapped = true,
 				AutomaticSize = "Y",
 				Font = Enum.Font.Gotham,
 				TextColor3 = Theme["Color Dark Text"],
 				TextXAlignment = "Left",
 				BackgroundTransparency = 1,
-				TextSize = 8,
+				TextSize = 9, -- Adjusted size
 				Text = Desc
 			}), "DarkText")
 			
 			local JoinButton = Create("TextButton", FrameHolder, {
-				Size = UDim2.new(1, -14, 0, 16),
+				Size = UDim2.new(1, -20, 0, 20), -- Larger button
 				AnchorPoint = Vector2.new(0.5, 1),
-				Position = UDim2.new(0.5, 0, 1, -7),
-				Text = "Join",
+				Position = UDim2.new(0.5, 0, 1, -8),
+				Text = "Join Discord",
 				Font = Enum.Font.GothamBold,
-				TextSize = 12,
-				TextColor3 = Color3.fromRGB(220, 220, 220),
-				BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-			})Make("Corner", JoinButton, UDim.new(0, 5))
+				TextSize = 13,
+				TextColor3 = Color3.fromRGB(255, 255, 255),
+				BackgroundColor3 = Color3.fromRGB(60, 170, 60) -- Brighter green
+			})
+			
+			-- Add hover effect
+			local ButtonHover = Create("UIGradient", JoinButton, {
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0),
+					NumberSequenceKeypoint.new(1, 0)
+				})
+			})
+			
+			Make("Corner", JoinButton, UDim.new(0, 6))
+			
+			-- Hover animations
+			JoinButton.MouseEnter:Connect(function()
+				game:GetService("TweenService"):Create(JoinButton, TweenInfo.new(0.2), {
+					BackgroundColor3 = Color3.fromRGB(70, 190, 70)
+				}):Play()
+			end)
+			
+			JoinButton.MouseLeave:Connect(function()
+				game:GetService("TweenService"):Create(JoinButton, TweenInfo.new(0.2), {
+					BackgroundColor3 = Color3.fromRGB(60, 170, 60)
+				}):Play()
+			end)
 			
 			local ClickDelay
 			JoinButton.Activated:Connect(function()
@@ -1923,23 +1963,47 @@ function xenon:MakeWindow(Configs)
 				if ClickDelay then return end
 				
 				ClickDelay = true
-				SetProps(JoinButton, {
-					Text = "Copied to Clipboard",
+				-- Smooth animation for button state change
+				game:GetService("TweenService"):Create(JoinButton, TweenInfo.new(0.2), {
 					BackgroundColor3 = Color3.fromRGB(100, 100, 100),
-					TextColor3 = Color3.fromRGB(150, 150, 150)
-				})task.wait(5)
+					TextColor3 = Color3.fromRGB(180, 180, 180)
+				}):Play()
+				
 				SetProps(JoinButton, {
-					Text = "Join",
-					BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-					TextColor3 = Color3.fromRGB(220, 220, 220)
-				})ClickDelay = false
+					Text = "Copied to Clipboard!"
+				})
+				
+				task.wait(5)
+				
+				game:GetService("TweenService"):Create(JoinButton, TweenInfo.new(0.2), {
+					BackgroundColor3 = Color3.fromRGB(60, 170, 60),
+					TextColor3 = Color3.fromRGB(255, 255, 255)
+				}):Play()
+				
+				SetProps(JoinButton, {
+					Text = "Join Discord"
+				})
+				ClickDelay = false
+			end)
+			
+			-- Add subtle hover effect to the entire frame
+			FrameHolder.MouseEnter:Connect(function()
+				game:GetService("TweenService"):Create(FrameHolder, TweenInfo.new(0.2), {
+					BackgroundColor3 = Theme["Color Hub 2"]:Lerp(Color3.fromRGB(255, 255, 255), 0.05)
+				}):Play()
+			end)
+			
+			FrameHolder.MouseLeave:Connect(function()
+				game:GetService("TweenService"):Create(FrameHolder, TweenInfo.new(0.2), {
+					BackgroundColor3 = Theme["Color Hub 2"]
+				}):Play()
 			end)
 			
 			local DiscordInvite = {}
 			function DiscordInvite:Destroy() InviteHolder:Destroy() end
 			function DiscordInvite:Visible(...) Funcs:ToggleVisible(InviteHolder, ...) end
 			return DiscordInvite
-		end
+		end		
 		return Tab
 	end
 	
