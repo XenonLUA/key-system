@@ -812,7 +812,7 @@ return {
   ["lucide-wind"] = "rbxassetid://10747382750",
   ["lucide-wrap-text"] = "rbxassetid://10747383065",
   ["lucide-wrench"] = "rbxassetid://10747383470",
-  ["lucide-x"] = "rbxassetid://10747384394",
+  ["lucide-x"] = "rbxassetid://101355199261064",
   ["lucide-x-circle"] = "rbxassetid://10747383819",
   ["lucide-x-octagon"] = "rbxassetid://10747384037",
   ["lucide-x-square"] = "rbxassetid://10747384217",
